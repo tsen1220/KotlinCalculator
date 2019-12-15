@@ -161,9 +161,9 @@
                 android:text = "0"
                 />
             <TextView
-                android:id="@+id/delete"
+                android:id="@+id/back"
                 style="@style/NumberButtonStyle"
-                android:text = "<-"
+                android:text="Back"
                 />
             <TextView
                 android:id="@+id/equal"
