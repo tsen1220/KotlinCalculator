@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
+import net.objecthunter.exp4j.ExpressionBuilder
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
@@ -12,6 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        zero.setOnClickListener { appendExpression("0",true) }
         one.setOnClickListener{ appendExpression("1",true)}
         two.setOnClickListener{ appendExpression("2",true)}
         three.setOnClickListener{ appendExpression("3",true)}
@@ -24,13 +26,13 @@ class MainActivity : AppCompatActivity() {
         dot.setOnClickListener{ appendExpression(".",true)}
 
 
-        plus.setOnClickListener{ appendExpression("+",true)}
-        minus.setOnClickListener{ appendExpression("-",true)}
-        muply.setOnClickListener{ appendExpression("*",true)}
-        divide.setOnClickListener{ appendExpression("/",true)}
+        plus.setOnClickListener{ appendExpression("+",false)}
+        minus.setOnClickListener{ appendExpression("-",false)}
+        muply.setOnClickListener{ appendExpression("*",false)}
+        divide.setOnClickListener{ appendExpression("/",false)}
 
-        open.setOnClickListener{ appendExpression("(",true)}
-        close.setOnClickListener{ appendExpression(")",true)}
+        open.setOnClickListener{ appendExpression("(",false)}
+        close.setOnClickListener{ appendExpression(")",false)}
 
         clear.setOnClickListener{
             mathExpression.text=""
@@ -48,6 +50,17 @@ class MainActivity : AppCompatActivity() {
 
         equal.setOnClickListener {
             try {
+                val expression = ExpressionBuilder(mathExpression.text.toString()).build()
+                val mathResult = expression.evaluate()
+                val longResult = mathResult.toLong()
+                if(mathResult == longResult.toDouble()) {
+                    result.text = longResult.toString()
+                }
+                else{
+                    result.text = mathResult.toString()
+                }
+
+
             }catch (e:Exception){
                 Log.d("Exception","message : " +e.message)
             }
@@ -56,6 +69,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun appendExpression( string : String , canClear : Boolean){
+
+        if(result.text.isNotEmpty()){
+            mathExpression.text =""
+        }
+
         if(canClear){
             result.text =""
             mathExpression.append(string)
