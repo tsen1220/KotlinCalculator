@@ -13,7 +13,9 @@
         android:layout_height="80sp"
         android:textColor="@color/numberButton"
         android:gravity="end"
-        android:maxLines="1"
+        android:textSize="40sp"
+        android:ellipsize="start"
+        android:singleLine="true"
         />
 
     <TextView
@@ -22,7 +24,9 @@
         android:layout_height="100sp"
         android:textColor="@color/numberButton"
         android:gravity="end"
-        android:maxLines="1"
+        android:ellipsize="start"
+        android:textSize="30sp"
+        android:singleLine="true"
         />
 
     <LinearLayout

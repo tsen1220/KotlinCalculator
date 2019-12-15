@@ -2,7 +2,9 @@ package com.example.calculator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,6 +41,15 @@ class MainActivity : AppCompatActivity() {
             var string = mathExpression.text.toString();
             if(string.isNotEmpty()){
                 mathExpression.text=string.substring(0,string.length-1)
+            }else{
+                mathExpression.text=""
+            }
+        }
+
+        equal.setOnClickListener {
+            try {
+            }catch (e:Exception){
+                Log.d("Exception","message : " +e.message)
             }
         }
 
