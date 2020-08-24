@@ -13,37 +13,39 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        zero.setOnClickListener { appendExpression("0",true) }
-        one.setOnClickListener{ appendExpression("1",true)}
-        two.setOnClickListener{ appendExpression("2",true)}
-        three.setOnClickListener{ appendExpression("3",true)}
-        four.setOnClickListener{ appendExpression("4",true)}
-        five.setOnClickListener{ appendExpression("5",true)}
-        six.setOnClickListener{ appendExpression("6",true)}
-        seven.setOnClickListener{ appendExpression("7",true)}
-        eight.setOnClickListener{ appendExpression("8",true)}
-        nine.setOnClickListener{ appendExpression("9",true)}
-        dot.setOnClickListener{ appendExpression(".",true)}
+        zero.setOnClickListener { appendExpression("0",true)}
+        one.setOnClickListener { appendExpression("1",true)}
+        two.setOnClickListener { appendExpression("2",true)}
+        three.setOnClickListener { appendExpression("3",true)}
+        four.setOnClickListener { appendExpression("4",true)}
+        five.setOnClickListener { appendExpression("5",true)}
+        six.setOnClickListener { appendExpression("6",true)}
+        seven.setOnClickListener { appendExpression("7",true)}
+        eight.setOnClickListener { appendExpression("8",true)}
+        nine.setOnClickListener { appendExpression("9",true)}
+        dot.setOnClickListener { appendExpression(".",true)}
 
 
-        plus.setOnClickListener{ appendExpression("+",false)}
-        minus.setOnClickListener{ appendExpression("-",false)}
-        muply.setOnClickListener{ appendExpression("*",false)}
-        divide.setOnClickListener{ appendExpression("/",false)}
+        plus.setOnClickListener { appendExpression("+",false)}
+        minus.setOnClickListener { appendExpression("-",false)}
+        muply.setOnClickListener { appendExpression("*",false)}
+        divide.setOnClickListener { appendExpression("/",false)}
 
-        open.setOnClickListener{ appendExpression("(",false)}
-        close.setOnClickListener{ appendExpression(")",false)}
+        open.setOnClickListener { appendExpression("(",false)}
+        close.setOnClickListener { appendExpression(")",false)}
 
-        clear.setOnClickListener{
+        clear.setOnClickListener {
             mathExpression.text=""
             result.text=""
         }
 
-        back.setOnClickListener{
+        back.setOnClickListener {
             var string = mathExpression.text.toString();
-            if(string.isNotEmpty()){
+            if (string.isNotEmpty()) {
                 mathExpression.text=string.substring(0,string.length-1)
-            }else{
+            }
+            else
+            {
                 mathExpression.text=""
             }
         }
@@ -56,28 +58,28 @@ class MainActivity : AppCompatActivity() {
                 if(mathResult == longResult.toDouble()) {
                     result.text = longResult.toString()
                 }
-                else{
+                else
+                {
                     result.text = mathResult.toString()
                 }
-
-
-            }catch (e:Exception){
+            }
+            catch (e:Exception) {
                 Log.d("Exception","message : " +e.message)
             }
         }
-
     }
 
-    fun appendExpression( string : String , canClear : Boolean){
-
-        if(result.text.isNotEmpty()){
+    fun appendExpression( string : String , canClear : Boolean) {
+        if (result.text.isNotEmpty()) {
             mathExpression.text =""
         }
 
-        if(canClear){
+        if (canClear) {
             result.text =""
             mathExpression.append(string)
-        }else{
+        }
+        else
+        {
             mathExpression.append(result.text)
             mathExpression.append(string)
             result.text=""
